@@ -1,0 +1,16 @@
+name: Cloud-Linker
+on:
+  workflow_dispatch:
+    inputs:
+      url:
+        description: '動画のURLを入れてください'
+        required: true
+jobs:
+  get-link:
+    runs-on: ubuntu-latest
+    steps:
+      - name: クラウドで住所を取得
+        run: |
+          pip install yt-dlp
+          echo "【準備完了！下のURLをコピーして mpv で開いてください】"
+          yt-dlp -g -f "best" "${{ github.event.inputs.url }}"
