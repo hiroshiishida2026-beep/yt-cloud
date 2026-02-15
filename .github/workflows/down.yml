@@ -5,11 +5,15 @@ on:
       url:
         description: 'YouTube URL'
         required: true
+
 jobs:
   get-link:
     runs-on: ubuntu-latest
     steps:
-      - name: クラウドで解析
+      - name: ツールをインストール
+        run: pip install yt-dlp
+
+      - name: 映像と音を合体させたURLを取得
         run: |
-          pip install yt-dlp
-          yt-dlp -g -f "best" "${{ github.event.inputs.url }}"
+          echo "【準備完了！下のURLをコピーしてください】"
+          yt-dlp -g -f "bestvideo[height<=720]+bestaudio/best[height<=720]/best" "${{ github.event.inputs.url }}"
