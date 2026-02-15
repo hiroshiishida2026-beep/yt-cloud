@@ -3,7 +3,7 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        description: '動画のURLを入れてください'
+        description: 'YouTubeのURL'
         required: true
 jobs:
   get-link:
