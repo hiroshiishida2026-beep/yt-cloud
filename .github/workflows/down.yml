@@ -3,14 +3,13 @@ on:
   workflow_dispatch:
     inputs:
       url:
-        description: 'YouTubeのURL'
+        description: 'YouTube URL'
         required: true
 jobs:
   get-link:
     runs-on: ubuntu-latest
     steps:
-      - name: クラウドで住所を取得
+      - name: クラウドで解析
         run: |
           pip install yt-dlp
-          echo "【準備完了！下のURLをコピーしてください】"
           yt-dlp -g -f "best" "${{ github.event.inputs.url }}"
